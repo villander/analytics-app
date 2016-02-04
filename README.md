@@ -1,4 +1,4 @@
-# construcao-app
+# Analytics-app
 
 App para a disciplina de construçao de software
 
