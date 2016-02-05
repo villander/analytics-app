@@ -36,6 +36,7 @@ io.on('connection', function(socket) {
     var clientIp =  socket.client.request.headers['x-forwarded-for'] || socket.client.conn.remoteAddress || socket.conn.remoteAddress || socket.request.connection.remoteAddress;
     var timeStamp = new Date();
     var url = message;
+    console.log(io.engine, 'engine');
     var numberClients =  io.engine.clientsCount;
     io.sockets.emit('clients', {'connections': numberClients});
     io.sockets.emit('pageview', { 'connections': numberClients, 'ip': '***.***.***.' + clientIp.substring(clientIp.lastIndexOf('.') + 1), 'url': url, 'timestamp': new Date()});
