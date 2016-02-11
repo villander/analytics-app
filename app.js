@@ -25,24 +25,24 @@ io.on('connection', function(socket) {
   var numberClients =  io.engine.clientsCount;
   io.sockets.emit('clients', {'connections': numberClients});
 
+  function getCurrentDate() {
+    var date = new Date();
+    return (date.getMonth() + 1 ) +  '/' + date.getUTCDate() + '/' + date.getFullYear();
+  }
+
+  function getCurrentHour() {
+    var date = new Date();
+    var hours = date.getHours();
+    var minutes = date.getMinutes();
+    var amPm = hours >= 12 ? ' PM' : ' AM';
+    hours = hours % 12; // return '0' ou different of '0'
+    hours = hours ? hours : 12; // the hour '0' should be '12'
+    minutes = minutes < 10 ? '0'+ minutes : minutes;
+    var timeCurrent = hours + ':' + minutes + ' ' + amPm;
+    return timeCurrent;
+  }
+
   socket.on('message', function (message) {
-
-    function getCurrentDate() {
-      var date = new Date();
-      return (date.getMonth() + 1 ) +  '/' + date.getUTCDate() + '/' + date.getFullYear();
-    }
-
-    function getCurrentHour() {
-      var date = new Date();
-      var hours = date.getHours();
-      var minutes = date.getMinutes();
-      var amPm = hours >= 12 ? ' PM' : ' AM';
-      hours = hours % 12; // return '0' ou different of '0'
-      hours = hours ? hours : 12; // the hour '0' should be '12'
-      minutes = minutes < 10 ? '0'+ minutes : minutes;
-      var timeCurrent = hours + ':' + minutes + ' ' + amPm;
-      return timeCurrent;
-    }
 
     var clientIp =  socket.client.request.headers['x-forwarded-for'] || socket.client.conn.remoteAddress || socket.conn.remoteAddress || socket.request.connection.remoteAddress;
     var timeStamp = getCurrentDate() + ' ' + getCurrentHour();
@@ -53,7 +53,7 @@ io.on('connection', function(socket) {
   });
 
   socket.on('disconnect', function () {
-    console.log("Socket disconnected 4");
+    console.log("Socket disconnected");
     var numberClients =  io.engine.clientsCount;
     io.sockets.emit('clients', {'connections': numberClients});
   });
