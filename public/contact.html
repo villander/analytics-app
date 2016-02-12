@@ -3,7 +3,9 @@
 <head>
   <title>Analytics App</title>
   <link href="/bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
-  <link rel="stylesheet" type="text/css" href="/css/style.css">
+  <style type="text/css">
+
+  </style>
 </head>
 <body>
 <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -22,9 +24,9 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="index.html">Home<span class="sr-only">(current)</span></a></li>
+        <li ><a href="index.html">Home<span class="sr-only">(current)</span></a></li>
         <li ><a href="about.html">About</a></li>
-        <li ><a href="contact.html">Contact</a></li>
+        <li class="active"><a href="contact.html">Contact</a></li>
         <li><a href="blog.html">Blog</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -38,6 +40,8 @@
 <script src="/socket.io/socket.io.js"></script>
 <script src="https://code.jquery.com/jquery-1.12.0.js"></script>
 <script type="text/javascript" src="/js/behavior.js"></script>
+</script>
+
 <script>
 
   var socket = io.connect('http://localhost:3000/');
@@ -51,6 +55,6 @@
   }
 
 </script>
-Index
+Contact
 </body>
 </html>
