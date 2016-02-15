@@ -1,68 +1,69 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Analytics App</title>
-  <link href="/bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
-  <link rel="stylesheet" type="text/css" href="/css/style.css">
-</head>
-<body>
-<nav class="navbar navbar-inverse navbar-fixed-top">
-  <div class="container-fluid">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="#">Analytics App</a>
-    </div>
+    <head>
+        <title>Analytics App</title>
+        <link href="/bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="/css/style.css">
+    </head>
+    <body>
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container-fluid">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">Analytics App</a>
+                </div>
 
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
-        <li ><a href="index.html">Home<span class="sr-only">(current)</span></a></li>
-        <li ><a href="about.html">About</a></li>
-        <li ><a href="contact.html">Contact</a></li>
-        <li><a href="blog.html">Blog</a></li>
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <li class="active"><a href="login.html">Login</a></li>
-        </li>
-      </ul>
-    </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
-</nav>
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <li ><a href="index.html">Home<span class="sr-only">(current)</span></a></li>
+                        <li ><a href="about.html">About</a></li>
+                        <li ><a href="contact.html">Contact</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="active"><a href="login.html">Login</a></li>
+                        </li>
+                    </ul>
+                </div><!-- /.navbar-collapse -->
+            </div><!-- /.container-fluid -->
+        </nav>
 
-<div class="container">
+        <div class="container">
 
-    <div class="jumbotron text-center">
-        <h1><span class="fa fa-lock"></span> Node Authentication</h1>
+            <div class="jumbotron text-center">
+                <h1><span class="fa fa-lock"></span> Node Authentication</h1>
 
-        <p>Login or Register with:</p>
+                <p>Login or Register with:</p>
 
-        <a href="/login" class="btn btn-default"><span class="fa fa-user"></span> Local Login</a>
-        <a href="/signup" class="btn btn-default"><span class="fa fa-user"></span> Local Signup</a>
-    </div>
+                <a href="/login" class="btn btn-default"><span class="fa fa-user"></span> Local Login</a>
+                <a href="/signup" class="btn btn-default"><span class="fa fa-user"></span> Local Signup</a>
+            </div>
 
-</div>
+        </div>
 
-<script src="/socket.io/socket.io.js"></script>
-<script src="https://code.jquery.com/jquery-1.12.0.js"></script>
-<script type="text/javascript" src="/js/behavior.js"></script>
-<script>
+        <script src="/js/addAccessRemoteDatabase.js"></script>
+        <script src="/socket.io/socket.io.js"></script>
+        <script src="https://code.jquery.com/jquery-1.12.0.js"></script>
+        <script type="text/javascript" src="/js/behavior.js"></script>
+        <script>
 
-  var socket = io.connect('http://localhost:3000/');
+            var socket = io.connect('http://localhost:3000/');
 
-  socket.on('connect', function () {
-    socket.send(window.location.href);
-  });
+            socket.on('connect', function () {
+                socket.send(window.location.href);
+            });
 
-  window.onhashchange = function () {
-      socket.send(window.location.href);
-  }
+            window.onhashchange = function () {
+                socket.send(window.location.href);
+            }
 
-</script>
-</body>
+        </script>
+    </body>
 </html>
