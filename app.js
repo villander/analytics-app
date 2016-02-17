@@ -2,8 +2,32 @@ var express = require('express');
 var app = express();
 var server = require('http').createServer(app);
 var io = require('socket.io')(server);
-var wine = require('./routes/wines');
 var bodyParser = require('body-parser');
+
+var mongoose = require('mongoose');
+
+mongoose.connect('mongodb://mano:123@ds055575.mongolab.com:55575/mano', function(err) {
+   if (err) {
+    throw err;
+  }
+});
+
+var db = mongoose.connection;
+
+db.on('error', function(err){
+    console.log('Erro de conexao.', err);
+    /*
+{ [MongoError: connect ECONNREFUSED] name: 'MongoError', message: 'connect ECONNREFUSED' }
+    */
+});
+
+db.on('open', function () {
+  console.log('Conexão aberta.')
+});
+
+db.on('connected', function(err){
+    console.log('Conectado')
+});
 
 
 var passport = require('passport');
@@ -39,12 +63,6 @@ require('./config/passport')(passport); // pass passport for configuration
 
 app.use(express.static('./public'));
 app.use('/bower_components',  express.static(__dirname + '/bower_components'));
-
-// app.get('/wines', wine.findAll);
-// app.get('/wines/:id', wine.findById);
-app.post('/wines', wine.addWine);
-// app.put('/wines/:id', wines.updateWine);
-// app.delete('/wines/:id', wine.deleteWine);
 
 
 io.on('connection', function(socket) {
