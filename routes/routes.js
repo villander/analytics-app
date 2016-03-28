@@ -14,10 +14,18 @@ module.exports = function(app, passport) {
 
     // route for showing the profile page
     app.get('/profile', isLoggedIn, function(req, res) {
+        app.locals.user = req.user;
         res.render('profile.ejs', {
             user : req.user // get the user out of session and pass to template
         });
     });
+
+    app.get('/dashboards', isLoggedIn, function(req, res) {
+        console.log(req.user, 'user session');
+        res.render('dashboards.ejs', {
+            user : req.user
+        });
+    })
 
     // =====================================
     // FACEBOOK ROUTES =====================
@@ -44,8 +52,9 @@ module.exports = function(app, passport) {
 function isLoggedIn(req, res, next) {
 
     // if user is authenticated in the session, carry on
-    if (req.isAuthenticated())
+    if (req.isAuthenticated()) {
         return next();
+    }
 
     // if they aren't redirect them to the home page
     res.redirect('/');
