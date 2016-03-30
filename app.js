@@ -64,6 +64,10 @@ require('./config/passport')(passport); // pass passport for configuration
 app.use(express.static('./public'));
 app.use('/bower_components',  express.static(__dirname + '/bower_components'));
 
+// Controllers
+
+var ControllerHistory = require('./controllers/history');
+
 
 io.on('connection', function(socket) {
 
@@ -95,6 +99,7 @@ io.on('connection', function(socket) {
     var numberClients =  io.engine.clientsCount;
     io.sockets.emit('clients', {'connections': numberClients});
     io.sockets.emit('pageview', { 'connections': numberClients, 'ip': '***.***.***.' + clientIp.substring(clientIp.lastIndexOf('.') + 1), 'url': url, 'timestamp': timeStamp});
+    //ControllerHistory.addHistory()
   });
 
   socket.on('disconnect', function () {
