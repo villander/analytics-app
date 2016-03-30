@@ -1,17 +1,12 @@
-<!-- views/profile.ejs -->
-<!doctype html>
+<!DOCTYPE html>
 <html>
-<head>
     <head>
         <title>Machine Learning App</title>
         <link href="/bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="/css/style.css">
     </head>
-</head>
-<body>
-<div class="container">
-
-    <nav class="navbar navbar-inverse navbar-fixed-top">
+    <body>
+        <nav class="navbar navbar-inverse navbar-fixed-top">
             <div class="container-fluid">
                 <!-- Brand and toggle get grouped for better mobile display -->
                 <div class="navbar-header">
@@ -40,31 +35,29 @@
             </div><!-- /.container-fluid -->
         </nav>
 
-    <div class="page-header text-center">
-        <h1><span class="fa fa-anchor"></span> Profile Page</h1>
-        <a href="/logout" class="btn btn-default btn-sm">Logout</a>
-    </div>
-
-    <div class="row">
-
-        <!-- FACEBOOK INFORMATION -->
-        <div class="col-sm-12">
-            <div class="well">
-                <h3 class="text-primary"><span class="fa fa-facebook"></span> Facebook</h3>
-                <img src="<%= user.facebook.photo %>" >
-
-                    <p>
-                        <strong>id</strong>: <%= user.facebook.id %><br>
-                        <strong>token</strong>: <%= user.facebook.token %><br>
-                        <strong>email</strong>: <%= user.facebook.email %><br>
-                        <strong>name</strong>: <%= user.facebook.name %>
-                    </p>
-
+        <div class="container">
+            <div class="jumbotron">
+                <h1>Software for PFC discipline of Federal University of Goiás</h1>
+                <p>Node.js® is a JavaScript runtime built on Chrome's V8 JavaScript engine. Node.js uses an event-driven, non-blocking I/O model that makes it lightweight and efficient. Node.js' package ecosystem, npm, is the largest ecosystem of open source libraries in the world.</p>
             </div>
         </div>
 
-    </div>
+        <script src="/js/addAccessRemoteDatabase.js"></script>
+        <script src="/socket.io/socket.io.js"></script>
+        <script src="https://code.jquery.com/jquery-1.12.0.js"></script>
+        <script type="text/javascript" src="/js/behavior.js"></script>
+        <script>
 
-</div>
-</body>
+            var socket = io.connect('http://localhost:3000/');
+
+            socket.on('connect', function () {
+                socket.send(window.location.href);
+            });
+
+            window.onhashchange = function () {
+                socket.send(window.location.href);
+            }
+
+        </script>
+    </body>
 </html>

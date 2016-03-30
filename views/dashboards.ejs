@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Analytics App</title>
+    <title>Machine Learning App</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -95,7 +95,7 @@
             pageId: ++lastPageId
           };
 
-          $('#pageViews').append('<tr><td>' + msg.url + msg.user + '</td><td id="page' + lastPageId + '">1</td></tr>');
+          $('#pageViews').append('<tr><td>' + msg.url + '</td><td id="page' + lastPageId + '">1</td></tr>');
           console.log(msg.user);
         }
       }

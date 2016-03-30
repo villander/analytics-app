@@ -20,6 +20,36 @@ module.exports = function(app, passport) {
         });
     });
 
+    app.get('/site', isLoggedIn, function(req, res) {
+        res.render('site.ejs', {
+            user: req.user // get the user out of session and pass to template
+        });
+    });
+
+    app.get('/site/blog', isLoggedIn, function(req, res) {
+        res.render('blog.ejs', {
+            user: req.user // get the user out of session and pass to template
+        });
+    });
+
+    app.get('/site/about', isLoggedIn, function(req, res) {
+        res.render('about.ejs', {
+            user: req.user // get the user out of session and pass to template
+        });
+    });
+
+    app.get('/site/contact', isLoggedIn, function(req, res) {
+        res.render('contact.ejs', {
+            user: req.user // get the user out of session and pass to template
+        });
+    });
+
+    app.get('/site/login', isLoggedIn, function(req, res) {
+        res.render('profile.ejs', {
+            user: req.user // get the user out of session and pass to template
+        });
+    });
+
     app.get('/dashboards', isLoggedIn, function(req, res) {
         console.log(req.user, 'user session');
         res.render('dashboards.ejs', {
@@ -36,7 +66,7 @@ module.exports = function(app, passport) {
     // handle the callback after facebook has authenticated the user
     app.get('/auth/facebook/callback',
         passport.authenticate('facebook', {
-            successRedirect : '/profile',
+            successRedirect : '/site',
             failureRedirect : '/'
         }));
 
