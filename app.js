@@ -3,31 +3,7 @@ var app = express();
 var server = require('http').createServer(app);
 var io = require('socket.io')(server);
 var bodyParser = require('body-parser');
-
-var mongoose = require('mongoose');
-
-mongoose.connect('mongodb://mano:123@ds055575.mongolab.com:55575/mano', function(err) {
-   if (err) {
-    throw err;
-  }
-});
-
-var db = mongoose.connection;
-
-db.on('error', function(err){
-    console.log('Erro de conexao.', err);
-    /*
-{ [MongoError: connect ECONNREFUSED] name: 'MongoError', message: 'connect ECONNREFUSED' }
-    */
-});
-
-db.on('open', function () {
-  console.log('Conexão aberta.')
-});
-
-db.on('connected', function(err){
-    console.log('Conectado')
-});
+var db = require('./config/db');
 
 
 var passport = require('passport');
@@ -63,10 +39,6 @@ require('./config/passport')(passport); // pass passport for configuration
 
 app.use(express.static('./public'));
 app.use('/bower_components',  express.static(__dirname + '/bower_components'));
-
-// Controllers
-
-var ControllerHistory = require('./controllers/history');
 
 
 io.on('connection', function(socket) {
