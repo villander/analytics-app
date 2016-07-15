@@ -46,7 +46,7 @@ module.exports = function(passport) {
 
         // asynchronous
         process.nextTick(function() {
-            UserController.findOrCreate(token, refreshToken, profile, done);
+            UserController.findOrCreateUser(token, refreshToken, profile, done);
         });
 
     }));
