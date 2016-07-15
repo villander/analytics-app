@@ -1,0 +1,20 @@
+{
+  "name": "analytics-app",
+  "description": "",
+  "main": "app.js",
+  "authors": [
+    "Michael Villander"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/villander/analytics-app",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.6"
+  }
+}
