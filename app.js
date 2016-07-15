@@ -38,7 +38,7 @@ require('./config/passport')(passport); // pass passport for configuration
 
 
 app.use(express.static('./public'));
-app.use('/bower_components',  express.static(__dirname + '/bower_components'));
+app.use(express.static('./bower_components'));
 
 
 io.on('connection', function(socket) {
