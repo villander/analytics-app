@@ -17,6 +17,7 @@ You will need the following things properly installed on your computer.
 * `npm install`
 * `bower install`
 
+
 ## Running / Development
 
 * `npm run start`
